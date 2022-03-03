@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 
 from phones.models import Phone
@@ -8,16 +9,16 @@ def index(request):
 
 
 def show_catalog(request):
+    SORT_MAP = {
+        'name': 'name',
+        'min_price': 'price',
+        'max_price': '-price',
+    }
     template = 'catalog.html'
     phone_objects = Phone.objects.all()
     sort = request.GET.get('sort')
     if sort:
-        if sort == 'name':
-            phones = phone_objects.order_by('name')
-        elif sort == 'min_price':
-            phones = phone_objects.order_by('price')
-        elif sort == 'max_price':
-            phones = phone_objects.order_by('-price')
+        phones = phone_objects.order_by(SORT_MAP[sort])
     else:
         phones = phone_objects
 
@@ -29,7 +30,10 @@ def show_catalog(request):
 
 def show_product(request, slug):
     template = 'product.html'
-    phone_object = Phone.objects.filter(slug=slug).get()
+    try:
+        phone_object = Phone.objects.get(slug=slug)
+    except:
+        raise Http404("Error")
     context = {
         'phone': phone_object,
     }
