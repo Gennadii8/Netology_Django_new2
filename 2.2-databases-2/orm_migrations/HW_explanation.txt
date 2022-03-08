@@ -1,0 +1,17 @@
+(в DATABASES в setting.py добавил 'USER': '.....','PASSWORD': '.....',)
+
+1) Установил интерпретатор, установил либы pip install -r requirements.txt
+2) Создал БД createdb -U postgres netology_orm_migrations
+3) python manage.py migrate
+4) Создал юзера админа для /admin/ python manage.py createsuperuser
+5) Загрузил данные python manage.py loaddata school.json
+6) Сделал связь Many to Many
+7) Создал миграцию python manage.py makemigrations
+8) Применил миграцию python manage.py migrate
+9) Добавил в админке ученикам учителей
+10) Изменил views.py
+11) Подправил шаблон students_list.html
+12) Установка pip install django-debug-toolbar и настройка (https://pythonru.com/biblioteki/django-debug-toolbar)
+
+
+

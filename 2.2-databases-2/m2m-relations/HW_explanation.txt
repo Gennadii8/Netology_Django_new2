@@ -1,0 +1,17 @@
+(в DATABASES в setting.py добавил 'USER': '.....','PASSWORD': '.....',)
+
+1) Установил интерпретатор, установил либы pip install -r requirements.txt
+2) Создал БД createdb -U postgres netology_m2m_relations
+3) python manage.py migrate
+4) python manage.py loaddata articles.json
+5) Создал юзера админа для /admin/ python manage.py createsuperuser
+6) Изменение models.py - Добавление класса тегов, добавление промежуточного класса, ссылающегося на на статьи и теги. 
+	В класс статей ссыль ManyToMany с классом тегов
+7) Изменение admin.py - Добавление классов RelationshipInlineFormset и ArticleScopeInline для описания связей статей и тегов + обработки главного тега. 
+	Также добавление класса тегов и связка статей через Inline)
+8) Изменение views.py - углубленный запрос, где в каждом сортировка и использование prefetch_related и select_related для оптимизации запросов. 
+9) python manage.py makemigrations + python manage.py migrate
+
+
+
+
